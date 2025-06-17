@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto:wght@300;700&display=swap');
+
+:root {
+  --f1-red: #E10600;
+  --f1-black: #1A1A1A;
+  --f1-dark-gray: #2C2C2C;
+  --f1-light-gray: #BFBFBF;
+  --f1-white: #F0F0F0;
+  --f1-accent-yellow: #FFD700;
+}
+
+body {
+  background: var(--f1-dark-gray);
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  color: var(--f1-white);
+  min-height: 100vh;
+}
+
+/* Estilos F1 para la barra de navegación */
+nav {
+  background: var(--f1-black);
+  padding: 1.5em 2.5em 1em 2.5em;
+  border-bottom: 4px solid var(--f1-red);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+}
+
+nav h1 {
+  font-family: 'Audiowide', cursive;
+  color: var(--f1-red);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 2.2em;
+  margin: 0;
+  text-shadow: 0 2px 12px #000c;
+  transition: color 0.2s;
+}
+
+nav h1:hover {
+  color: var(--f1-accent-yellow);
+  cursor: pointer;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 2em;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav a {
+  font-family: 'Audiowide', cursive;
+  font-weight: 700;
+  color: var(--f1-white);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  padding: 0.5em 1.5em;
+  border-radius: 6px;
+  transition: 
+    background 0.2s, 
+    color 0.25s, 
+    transform 0.2s;
+  border-bottom: 3px solid transparent;
+}
+
+nav a:hover,
+nav a:focus {
+  background: var(--f1-red);
+  color: var(--f1-white);
+  transform: translateY(-2px) scale(1.07);
+  border-bottom: 3px solid var(--f1-accent-yellow);
+  text-shadow: 0 0 8px var(--f1-red);
+}
+
+nav ul li::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 60%;
+  height: 3px;
+  background: var(--f1-accent-yellow);
+  opacity: 0;
+  transform: translateX(-50%) scaleX(0);
+  transition: all 0.25s;
+  border-radius: 2px;
+}
+nav ul li:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) scaleX(1);
+}
+
+router-outlet {
+  display: block;
+  padding: 2.5em;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    padding: 1em;
+  }
+  nav ul {
+    gap: 1em;
+  }
+  nav h1 {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+  }
+}

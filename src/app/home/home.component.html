@@ -1,1 +1,67 @@
-<p>home works!</p>
+<p>Welcome {{ username }}</p>
+
+<!-- ZONA NUEVO TWEET -->
+<div class="tweet-creator-container">
+  <h2>Nuevo Tweet</h2>
+  <form (ngSubmit)="addTweet()" class="tweet-form">
+    <input
+      type="text"
+      class="txt"
+      placeholder="your tweet here..."
+      [(ngModel)]="tweetText"
+      name="tweetText"
+      required
+    />
+    <button type="submit" class="btn">Tweet</button>
+  </form>
+</div>
+
+<!-- ZONA TIMELINE -->
+<div class="container color-ligth">
+  <div class="col">
+    <h2>Timeline</h2>
+
+    <div *ngFor="let tweet of tweets" class="life-container tweet-item">
+      <p>{{ tweet.id }} – {{ tweet.tweet }}</p>
+      <p class="tweet-author">&#64;<span>{{ tweet.postedBy?.username }}</span></p>
+
+      <!-- Reacciones -->
+      <div class="reactions">
+        <button
+          *ngFor="let rt of reactionTypes"
+          type="button"
+          [attr.data-tooltip]="rt.description"
+          (click)="react(tweet.id, rt.id)"
+          [class.active-reaction]="userReactions[tweet.id] === rt.id"
+        >
+          {{ reactionEmojis[rt.description] }}
+          <span *ngIf="reactionCounts[tweet.id]?.[rt.description]">
+            {{ reactionCounts[tweet.id][rt.description] }}
+          </span>
+        </button>
+      </div>
+
+      <!-- Comentarios -->
+      <div class="comments">
+        <div *ngFor="let c of commentsMap[tweet.id] || []" class="comment">
+          <div class="comment-header">
+            <small>{{ c.user.username }} dijo:</small>
+            <button (click)="removeComment(c.id, tweet.id)">🗑️</button>
+          </div>
+          <p>{{ c.content }}</p>
+        </div>
+
+        <form (ngSubmit)="addComment(tweet.id)" class="comment-form">
+          <input
+            type="text"
+            placeholder="Agrega un comentario..."
+            [(ngModel)]="newCommentText[tweet.id]"
+            name="comment-{{tweet.id}}"
+            required
+          />
+          <button type="submit">Publicar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

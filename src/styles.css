@@ -1,24 +1,138 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,700');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto:wght@300;700&display=swap');
+
+/* Variables para facilidad de uso y consistencia */
+:root {
+    --f1-red: #E10600; /* Rojo icónico de Ferrari/F1 */
+    --f1-black: #1A1A1A; /* Negro profundo de fibra de carbono */
+    --f1-dark-gray: #2C2C2C; /* Gris oscuro para fondos */
+    --f1-light-gray: #BFBFBF; /* Gris claro para detalles */
+    --f1-white: #F0F0F0; /* Blanco brillante */
+    --f1-accent-yellow: #FFD700; /* Amarillo para acentos sutiles */
+}
 
 body {
-   background : #2E9ce6;
-   padding: 3em;
-   font-family: 'Raleway', 'Arial';
-   color: #fff;
+    background: var(--f1-dark-gray); /* Fondo gris oscuro, como el asfalto o la fibra de carbono */
+    padding: 2em; /* Un poco menos de padding para un look más compacto */
+    font-family: 'Roboto', sans-serif; /* Roboto para el texto general, limpio y legible */
+    color: var(--f1-white); /* Texto blanco para contraste */
+    line-height: 1.6; /* Mejora la legibilidad */
+    /* Posible textura de fondo sutil si se desea: */
+    /* background-image: url('path/to/carbon-fiber-texture.png'); */
+    /* background-size: cover; */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Audiowide', cursive; /* Audiowide para títulos, un toque tecnológico y futurista */
+    color: var(--f1-red); /* Títulos en rojo F1 */
+    text-transform: uppercase; /* Mayúsculas para un look más agresivo */
+    letter-spacing: 1.5px; /* Espaciado entre letras para impacto */
 }
 
 ul {
-   list-style-type: none;
-   margin: 0 0 2em 0;
-   padding: 0;
+    list-style-type: none;
+    margin: 0 0 2em 0;
+    padding: 0;
+    border-bottom: 2px solid var(--f1-red); /* Línea roja para simular un borde de pista */
+    padding-bottom: 0.5em; /* Espacio debajo de la línea */
 }
 
 ul li {
-   display: inline;
-   margin-right: 30px;
+    display: inline-block; /* Usar inline-block para mejor control */
+    margin-right: 25px; /* Ajuste el margen */
+    position: relative; /* Para el efecto hover */
+}
+
+ul li:last-child {
+    margin-right: 0; /* Elimina el margen del último elemento */
 }
 
 a {
-   color: #0f0;
-   text-decoration: none;
+    color: var(--f1-white); /* Texto del enlace en blanco */
+    text-decoration: none;
+    font-family: 'Audiowide', cursive; /* Los enlaces de navegación también usan Audiowide */
+    font-weight: 700; /* Negrita */
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transición suave */
+    padding: 0.5em 0; /* Padding para el área de clic */
+    display: block; /* Para que el padding funcione bien */
+}
+
+a:hover,
+a:focus {
+    color: var(--f1-red); /* Al pasar el ratón, el enlace se vuelve rojo F1 */
+    transform: translateY(-2px); /* Pequeño levantamiento para efecto "aceleración" */
+}
+
+/* Añadiendo un sutil efecto de "neumático" o "grip" al pasar el ratón por los elementos de la lista */
+ul li::before {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Debajo del texto */
+    left: 50%;
+    transform: translateX(-50%) scaleX(0); /* Empieza oculto */
+    width: 100%;
+    height: 3px;
+    background-color: var(--f1-accent-yellow); /* Barra de acento amarillo */
+    transition: transform 0.3s ease-in-out;
+}
+
+ul li:hover::before {
+    transform: translateX(-50%) scaleX(1); /* Se expande al 100% al pasar el ratón */
+}
+
+/* Estilos para el contenedor principal de la aplicación, si lo tienes */
+.container {
+    background: var(--f1-black); /* Fondo del contenedor principal en negro carbono */
+    padding: 2em;
+    border-radius: 8px; /* Bordes ligeramente redondeados */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Sombra para profundidad */
+    max-width: 900px; /* Ancho máximo para el contenido */
+    margin: 2em auto; /* Centrar el contenedor */
+    border-top: 5px solid var(--f1-red); /* Borde superior rojo como detalle */
+}
+
+/* Algunos estilos básicos para botones, si los usas */
+button {
+    background-color: var(--f1-red);
+    color: var(--f1-white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Audiowide', cursive;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #C20500; /* Un rojo ligeramente más oscuro al pasar el ratón */
+    transform: translateY(-1px); /* Pequeño efecto de "presión" */
+}
+
+/* Estilos para cards o posts de tweets */
+.tweet-card {
+    background-color: var(--f1-black);
+    border: 1px solid var(--f1-dark-gray);
+    border-left: 5px solid var(--f1-accent-yellow); /* Borde lateral amarillo como acento */
+    margin-bottom: 1.5em;
+    padding: 1.5em;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tweet-card p {
+    color: var(--f1-light-gray);
+    margin-bottom: 0.5em;
+}
+
+.tweet-card .author {
+    font-weight: 700;
+    color: var(--f1-red);
+    margin-bottom: 0.5em;
+    font-family: 'Audiowide', cursive;
+}
+
+.tweet-card .timestamp {
+    font-size: 0.8em;
+    color: var(--f1-light-gray);
+    opacity: 0.7;
 }

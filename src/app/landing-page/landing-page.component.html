@@ -1,1 +1,32 @@
-<p>landing-page works!</p>
+<div class="container color-ligth">
+  <div class="col">
+    <h2>Publicaciones recientes</h2>
+    <div *ngFor="let tweet of tweets" class="life-container tweet-item">
+      <p>{{ tweet.id }} – {{ tweet.tweet }}</p>
+      <p class="tweet-author">&#64;{{ tweet.postedBy?.username }}</p>
+
+      <!-- Reacciones (solo visual) -->
+      <div class="reactions">
+        <div
+          class="reaction-static"
+          *ngFor="let rt of reactionTypes"
+        >
+          {{ reactionEmojis[rt.description] }}
+          <span *ngIf="reactionCounts[tweet.id]?.[rt.description]">
+            {{ reactionCounts[tweet.id][rt.description] }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Comentarios (solo lectura) -->
+      <div class="comments">
+        <div *ngFor="let c of commentsMap[tweet.id] || []" class="comment">
+          <div class="comment-header">
+            <small>{{ c.user.username }} dijo:</small>
+          </div>
+          <p>{{ c.content }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

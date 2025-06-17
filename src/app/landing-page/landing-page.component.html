@@ -1,16 +1,17 @@
 <div class="container color-ligth">
   <div class="col">
     <h2>Publicaciones recientes</h2>
+    <div *ngIf="tweets.length === 0">
+      <p style="color:red;">No hay tweets para mostrar o ocurrió un error.</p>
+      <p style="color:orange;">¿Falla CORS? ¿El backend responde?</p>
+    </div>
     <div *ngFor="let tweet of tweets" class="life-container tweet-item">
       <p>{{ tweet.id }} – {{ tweet.tweet }}</p>
       <p class="tweet-author">&#64;{{ tweet.postedBy?.username }}</p>
 
       <!-- Reacciones (solo visual) -->
       <div class="reactions">
-        <div
-          class="reaction-static"
-          *ngFor="let rt of reactionTypes"
-        >
+        <div class="reaction-static" *ngFor="let rt of reactionTypes">
           {{ reactionEmojis[rt.description] }}
           <span *ngIf="reactionCounts[tweet.id]?.[rt.description]">
             {{ reactionCounts[tweet.id][rt.description] }}
